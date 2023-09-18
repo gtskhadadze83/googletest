@@ -40,7 +40,16 @@ IF %errorlevel% neq 0 EXIT /B 1
 %CTEST_BIN% -C Debug --timeout 600
 IF %errorlevel% neq 0 EXIT /B 1
 
+IF EXIST git\googletest (
+  CD git\googletest
+) ELSE IF EXIST github\googletest (
+  CD github\googletest
+)
+
+
 CD ..
+MKDIR build
+COPY cmake_msvc2022\* build\ 
 :: RMDIR /S /Q cmake_msvc2022
 
 :: ----------------------------------------------------------------------------
