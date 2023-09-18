@@ -11,10 +11,8 @@ env:
 jobs:         
 
   Build4Windows:
-  
-    runs-on: windows-latest
-    
-    steps:
+   runs-on: windows-latest
+   steps:
 
     - uses: actions/checkout@v3
       with:
@@ -27,7 +25,7 @@ jobs:
       run: cmd.exe ci/windows-presubmit.bat
 
     - name: Upload Artifacts # The project is then uploaded as an artifact named 'site'.
-    - uses: kittaakos/upload-artifact-as-is@v1
+      uses: kittaakos/upload-artifact-as-is@v1
       with:
         path: cmake_msvc2022/
             
