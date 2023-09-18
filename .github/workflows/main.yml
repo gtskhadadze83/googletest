@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  BAZEL_CXXOPTS: -std=c++14
+
+jobs:         
+
+  Build4Windows:
+  
+    runs-on: windows-latest
+    
+    steps:
+
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Tests
+      run: bazel test --cxxopt=/std:c++14 --features=external_include_paths --test_output=errors ...
+
+    - name: Build
+      run: cmd.exe ci/windows-presubmit.bat
+
+    - name: Upload Artifacts # The project is then uploaded as an artifact named 'site'.
+    - uses: kittaakos/upload-artifact-as-is@v1
+      with:
+        path: cmake_msvc2022/
+            
