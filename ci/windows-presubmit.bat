@@ -41,7 +41,7 @@ IF %errorlevel% neq 0 EXIT /B 1
 IF %errorlevel% neq 0 EXIT /B 1
 
 CD ..
-RMDIR /S /Q cmake_msvc2022
+:: RMDIR /S /Q cmake_msvc2022
 
 :: ----------------------------------------------------------------------------
 :: Bazel
